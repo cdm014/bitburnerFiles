@@ -14,7 +14,8 @@ export async function main(ns) {
 
 	for (var i = 0; i < files.length; i++) {
 		let filename = files[i];
-		let url = `https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/`+filename;
+		await ns.tprint("trying to install "+filename);
+		let url = "https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/"+filename;
 		await ns.wget(url,filename);
 	}
 }
