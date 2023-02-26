@@ -1,5 +1,5 @@
 # install
-create the following script as install.js and run it
+Either run the two command lines here or create the script below and run it
 ```
 wget https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/install.js install.js
 run install.js
