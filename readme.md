@@ -11,11 +11,11 @@ export async function main(ns) {
 	files.push("WormHack.js");
 	files.push("WormNuke.js");
 	files.push("autohack.js");
-
+  let token = "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";
 	for (var i = 0; i < files.length; i++) {
 		let filename = files[i];
-		await ns.tprint("trying to install "+filename);
 		let url = "https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/"+filename;
+		await ns.tprint(url);
 		await ns.wget(url,filename);
 	}
 }
