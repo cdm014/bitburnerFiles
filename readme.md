@@ -17,6 +17,7 @@ export async function main(ns) {
 	files.push("WormHack.js");
 	files.push("WormNuke.js");
 	files.push("autohack.js");
+	files.push("scriptLauncher.js");
   let token = "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";
 	for (var i = 0; i < files.length; i++) {
 		let filename = files[i];
