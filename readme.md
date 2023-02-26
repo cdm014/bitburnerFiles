@@ -1,5 +1,11 @@
 # install
 create the following script as install.js and run it
+```
+wget https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/install.js install.js
+run install.js
+```
+
+
 
 ```
 export async function main(ns) {
