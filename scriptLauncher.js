@@ -2,7 +2,7 @@ export async function main (ns) {
 	var scriptName =  ns.args[0];
 	var newArgs = new Array();
 	for (var index = 1; index < ns.args.length; index++) {
-		newArgs.push(ns.args[i]);
+		newArgs.push(ns.args[index]);
 	}
 	var server = await ns.getHostname();
 	var maxRam = await ns.getServerMaxRam(server);
