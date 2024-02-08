@@ -174,7 +174,7 @@ async function buildServer(ns, name) {
  * @param {netscript} ns 
  * @param {Server} server 
  */
-async function scoreServr(ns, server) {
+async function scoreServer(ns, server) {
     let hackSuccess = 1;
     let hackPercent = await ns.hackAnalyzePercent(server.Name);
     let moneyAvailable = await ns.getServerMoneyAvailable(server.Name);
