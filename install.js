@@ -3,11 +3,11 @@ export async function main(ns) {
 		throw new Exception ("Please run this from home");
 	}
 	var files = new Array();
-	files.push("WormBot.js");
-	files.push("WormHack.js");
-	files.push("WormNuke.js");
-	files.push("autohack.js");
-	files.push("scriptLauncher.js");
+	files.push("TinyHack.js");
+	files.push("TinyGrow.js");
+	files.push("TinyWeak.js");
+	files.push("Control.js");
+	
   
 	for (var i = 0; i < files.length; i++) {
 		let filename = files[i];
