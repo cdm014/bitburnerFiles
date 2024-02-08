@@ -6,7 +6,7 @@ export async function main(ns) {
 	files.push("TinyHack.js");
 	files.push("TinyGrow.js");
 	files.push("TinyWeak.js");
-	files.push("Control.js");
+	files.push("Controller.js");
 	
   
 	for (var i = 0; i < files.length; i++) {
@@ -16,3 +16,5 @@ export async function main(ns) {
 		await ns.wget(url,filename);
 	}
 }
+//https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/install.js
+//wget("https://raw.githubusercontent.com/cdm014/bitburnerFiles/master/install.js","install.js")
