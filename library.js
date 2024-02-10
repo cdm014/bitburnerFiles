@@ -1,5 +1,5 @@
 var programs = ["BruteSSH.exe","FTPCrack.exe","relaySMTP.exe","HTTPWorm.exe","SQLInject.exe"];
-
+var serverFile = "/Servers.txt"
 /**
  * gets an integer value representing how many ports we can open
  * @param {*} ns - netscript library provided by game
@@ -46,6 +46,7 @@ async function getServers(ns) {
     while (SeenServers.length > 0 ) {
         let sname = SeenServers.pop();
         let server = buildServer(ns,sname);
+        await ns.tprint(JSON.stringify(server));
         fullServers.push(server)
     }
     return fullServers;
@@ -58,7 +59,7 @@ async function getServers(ns) {
 export async function writeServers(ns) {
     let Servers = getServers(ns);
     let ServerString = JSON.stringify(Servers);
-    await ns.write("Servers.JSON",ServerString,"w");
+    await ns.write(serverFile,ServerString,"w");
 }
 
 /**
@@ -66,7 +67,7 @@ export async function writeServers(ns) {
  * @param {netscript} ns 
  */
 async function readServers(ns) {
-    let ServerString = await ns.read("Servers.JSON");
+    let ServerString = await ns.read(serverFile);
     let Servers = new Array();
     if (ServerString != "") {
         Servers = JSON.parse(ServerString);
