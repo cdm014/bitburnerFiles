@@ -4,7 +4,7 @@ var programs = ["BruteSSH.exe","FTPCrack.exe","relaySMTP.exe","HTTPWorm.exe","SQ
  * gets an integer value representing how many ports we can open
  * @param {*} ns - netscript library provided by game
  */
-async function getProgramLevel(ns) {
+export async function getProgramLevel(ns) {
     var stop = false;
     var index = 0;
     while (!stop && index < programs.length) {
