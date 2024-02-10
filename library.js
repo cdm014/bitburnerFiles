@@ -166,7 +166,14 @@ async function buildServer(ns, name) {
     server.RequiredLevel = await ns.getServerRequiredHackingLevel(server.Name);
     server.MinSecurity = await ns.getServerMinSecurityLevel(server.Name);
     server.MaxMoney = await ns.getServerMaxMoney(target);
+    return server;
 
+}
+
+
+
+async function scoreServer(ns, server) {
+    
 }
 
 /**
@@ -178,7 +185,7 @@ async function scoreServer(ns, server) {
     let hackSuccess = 1;
     let hackPercent = await ns.hackAnalyzePercent(server.Name);
     let moneyAvailable = await ns.getServerMoneyAvailable(server.Name);
-    let hackMultiplier = 100 / (100 - hackPercent); 
+    let hackMultiplier = 100 / (100 - hackPercent); //number of times we'll  have to hack
     let hackAmount = (hackPercent / 100 ) * hackSuccess *  moneyAvailable;
     let growthNumber = await ns.growthAnalyze(server.Name,hackMultiplier);
     let weakenNumber = Math.max((0.002 + (growthNumber * 0.004)) / 0.005,1);
