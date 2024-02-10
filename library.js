@@ -42,10 +42,12 @@ async function getServers(ns) {
             SeenServers.push(s1);
         }
     }
+    await ns.tprint("seen servers: "+SeenServers.length);
     let fullServers = new Array();
     while (SeenServers.length > 0 ) {
         let sname = SeenServers.pop();
         let server = buildServer(ns,sname);
+
         await ns.tprint(JSON.stringify(server));
         fullServers.push(server)
     }
