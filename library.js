@@ -26,6 +26,7 @@ export async function getProgramLevel(ns) {
  * @returns Array of server objects
  */
 async function getServers(ns) {
+    await ns.tprint("GetServers called");
     var NewServers = new Array();
     var SeenServers = new Array();
     NewServers.push("home");
