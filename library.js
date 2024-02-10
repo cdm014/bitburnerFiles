@@ -55,7 +55,7 @@ async function getServers(ns) {
  * calls getServers and writes the results to a JSON file
  * @param {netscript} ns 
  */
-async function writeServers(ns) {
+export async function writeServers(ns) {
     let Servers = getServers(ns);
     let ServerString = JSON.stringify(Servers);
     await ns.write("Servers.JSON",ServerString,"w");
@@ -159,40 +159,41 @@ async function nukeServer(ns, context, server) {
     await ns.nuke(server);
 }
 
-async function buildServer(ns, name) {
+export async function buildServer(ns, name) {
     let server = new Object();
     server.Name = name;
     server.RequiredPorts =  await ns.getServerNumPortsRequired(server.Name);
     server.RequiredLevel = await ns.getServerRequiredHackingLevel(server.Name);
     server.MinSecurity = await ns.getServerMinSecurityLevel(server.Name);
     server.MaxMoney = await ns.getServerMaxMoney(target);
+    server.Score = await scoreServerName(ns, name);
     return server;
 
 }
 
 
 
-async function scoreServer(ns, server) {
-    
+async function scoreServerName(ns, server) {
+    //the closer we are to max money the more we can hack
+    let curMoney = await ns.getServerMoneyAvailable(server);
+    let maxMoney = await ns.getServerMaxMoney(server);
+    let hackPercent = await ns.hackAnalyze(server);
+    let hackMoney = hackPercent * curMoney;
+    let hackChance = await ns.hackAnalyzeChance(server);
+    let m1 = 1 / (1-hackPercent);
+    let gthreads = Math.max(await ns.growthAnalyze(server,m1),1);
+    let hackRam = 0.1;
+    let growRam = 0.15;
+    let weakRam = 0.15;
+    let hackSecs = await ns.getHackTime(server);
+    let growSecs = await ns.getGrowTime(server);
+    let weakSecs = await ns.getWeakenTime(server);
+    let weakThreads = ((0.002) + (gthreads * 0.004))/ 0.005;
+    weakThreads = Math.ceil(Math.max(weakThreads, 1));
+    let score = (hackChance * hackMoney) / (
+        (hackRam * hackSecs) + 
+        (gthreads * (growRam * growSecs))+
+        (weakThreads * (weakRam * weakSecs))
+    );
 }
 
-/**
- * score by likely money received over time
- * @param {netscript} ns 
- * @param {Server} server 
- */
-async function scoreServer(ns, server) {
-    let hackSuccess = 1;
-    let hackPercent = await ns.hackAnalyzePercent(server.Name);
-    let moneyAvailable = await ns.getServerMoneyAvailable(server.Name);
-    let hackMultiplier = 100 / (100 - hackPercent); //number of times we'll  have to hack
-    let hackAmount = (hackPercent / 100 ) * hackSuccess *  moneyAvailable;
-    let growthNumber = await ns.growthAnalyze(server.Name,hackMultiplier);
-    let weakenNumber = Math.max((0.002 + (growthNumber * 0.004)) / 0.005,1);
-    let hackTime = await ns.getHackTime(server.Name);
-    let growTime = await ns.getGrowTime(server.Name) * growthNumber;
-    let weakTime = await ns.getWeakkenTime(server.Name) * weakenNumber;
-    let totalTime = hackTime + growTime + weakTime;
-    server.Score = hackAmount / totalTime;
-    return server;
-}

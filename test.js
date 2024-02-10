@@ -1,6 +1,4 @@
-
-import {getProgramLevel} from "library";
+import {writeServers} from "library"
 export async function main(ns) {
- var x = await ns.hackAnalyze("foodnstuff");
- await ns.tprint("hackpercent");
+ await writeServers(ns);
 }
