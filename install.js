@@ -7,6 +7,7 @@ export async function main(ns) {
 	files.push("TinyGrow.js");
 	files.push("TinyWeaken.js");
 	files.push("Controller.js");
+	files.push("library.js"); 
 	
   
 	for (var i = 0; i < files.length; i++) {
