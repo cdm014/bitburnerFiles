@@ -9,7 +9,10 @@ export async function main(ns) {
 	files.push("Controller.js");
 	files.push("library.js"); 
 	files.push("test.js");
-	
+	for (var i = 0; i < files.length; i++) {
+		let filename = files[i];
+		await ns.remove(filename);
+	}
   
 	for (var i = 0; i < files.length; i++) {
 		let filename = files[i];
