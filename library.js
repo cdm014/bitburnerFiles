@@ -34,6 +34,7 @@ export async function getServers(ns) {
     await ns.tprint("test");
     while (NewServers.length >0 ) {
         let s1 = NewServers.pop();
+        await ns.tprint("checking: "+s1);
         if (!SeenServers.includes(s1)) {
             let connections = await ns.scan(s1);
             let i = 0;
