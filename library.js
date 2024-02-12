@@ -25,7 +25,7 @@ export async function getProgramLevel(ns) {
  * @param {netscript} ns 
  * @returns Array of server objects
  */
-async function getServers(ns) {
+export async function getServers(ns) {
     await ns.tprint("GetServers called");
     var NewServers = new Array();
     var SeenServers = new Array();
@@ -177,7 +177,7 @@ export async function buildServer(ns, name) {
 
 
 
-async function scoreServerName(ns, server) {
+export async function scoreServerName(ns, server) {
     //the closer we are to max money the more we can hack
     let curMoney = await ns.getServerMoneyAvailable(server);
     let maxMoney = await ns.getServerMaxMoney(server);
