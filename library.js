@@ -30,6 +30,7 @@ export async function getServers(ns) {
     var NewServers = new Array();
     var SeenServers = new Array();
     NewServers.push("home");
+    await ns.tprint("NewServers length: "+NewServers.length);
     while (NewServers.length >0 ) {
         let s1 = NewServers.pop();
         if (!SeenServers.includes(s1)) {
