@@ -14,6 +14,7 @@ export async function getServers(ns) {
             let i = 0;
             while (i < connections.length) {
                 let newServer = connections[i];
+                await ns.tprint("Adding: "+newServer);
                 NewServers.push(newServer);
                 i++;
             }
