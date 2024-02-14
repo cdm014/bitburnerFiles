@@ -156,3 +156,26 @@ export async function readServers(ns) {
 export async function runBatch(ns, server) {
 
 }
+
+
+/**
+ * Builds a context object that includes our basic information
+ * @param {NS} ns 
+ * @returns Context
+ */
+async function buildContext(ns) {
+  var ContextFileString = await ns.Read("Context.JSON");
+  var Context = new Object();
+  if (ContextFileString != "") {
+      Context = JSON.parse(ContextFileString);
+  } else {
+      Context.ProgramLevel = 0;
+      Context.HackingLevel = 0;
+      Context.Money = 0;
+  }
+  Context.Money = await ns.getServerMoneyAvailable("home");
+  Context.HackingLevel = await ns.getHackingLevel();
+  Context.ProgramLevel = await getProgramLevel(ns);
+  await ns.Write("Context.JSON",Context,"w")
+  return Context;
+}

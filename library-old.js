@@ -103,7 +103,7 @@ async function canNuke(ns, context, server) {
 
 /**
  * Builds a context object that includes our basic information
- * @param {netscript} ns 
+ * @param {NS} ns 
  * @returns Context
  */
 async function buildContext(ns) {
