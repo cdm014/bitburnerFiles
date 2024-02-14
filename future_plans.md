@@ -12,12 +12,12 @@ The two main costs are time and amount of ram needed this means costs can be exp
 * grow = ((0.15 gb) x growseconds) + ((4/5) x (0.15) x weakenseconds) = ((.15) x growSeconds) + ((.12) x weakenSeconds)
 
 * needed multiplier = (100 / (100 - hackanalyzepercent)) <- this is wrong but the closest easy value
-* growNumber = growthAnalyze(server, multiplier) 
+* growNumber = growthAnalyze(server, multiplier)  
 
 Using this the total cost to hack a server for 1 thread and return it to it's previous state is roughly:
 
 * hackCost =  (0.1 x hackseconds) + (0.06 x weakenseconds) + (growNumber x (0.15 x growseconds) + (.12 x weakenseconds) )
 * reward = (hackSuccess * hackReceive)
 
-* score = reward / hackCost
+* score = reward / hackCost 
 ## batching

@@ -1,4 +1,4 @@
-import {writeServers} from "library"
+import {getServers} from "library"
 export async function main(ns) {
- await writeServers(ns);
+ await getServers(ns);
 }
