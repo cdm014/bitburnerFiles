@@ -21,3 +21,13 @@ Using this the total cost to hack a server for 1 thread and return it to it's pr
 
 * score = reward / hackCost 
 ## batching
+
+
+
+
+# notes
+- scoring is a ram expensive function but it's probably not necessary on all servers or to be run very often
+- identify best candidates for hacking via scoring
+- identify best candidates for minimizing security by maxmoney / (minSecurity * weakenNumber)
+- identify best candidates for growing by maxMoney / (currentSecurity * growNumber)
+
