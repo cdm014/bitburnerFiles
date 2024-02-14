@@ -24,4 +24,48 @@ export async function getServers(ns) {
         }
     }
     await ns.tprint("seen servers: "+SeenServers.length);
+    let fullServers = new Array();
+    while (SeenServers.length > 0 ) {
+        let sname = SeenServers.pop();
+        let server = buildServer(ns,sname);
+
+        await ns.tprint(JSON.stringify(server));
+        fullServers.push(server)
+    }
+    return fullServers;
+}
+
+export async function buildServer(ns, name) {
+    let server = new Object();
+    server.Name = name;
+    server.RequiredPorts =  await ns.getServerNumPortsRequired(server.Name);
+    server.RequiredLevel = await ns.getServerRequiredHackingLevel(server.Name);
+    server.MinSecurity = await ns.getServerMinSecurityLevel(server.Name);
+    server.MaxMoney = await ns.getServerMaxMoney(target);
+    server.Score = await scoreServerName(ns, name);
+    return server;
+
+}
+export async function scoreServerName(ns, server) {
+    //the closer we are to max money the more we can hack
+    let curMoney = await ns.getServerMoneyAvailable(server);
+    let maxMoney = await ns.getServerMaxMoney(server);
+    let hackPercent = await ns.hackAnalyze(server);
+    let hackMoney = hackPercent * curMoney;
+    let hackChance = await ns.hackAnalyzeChance(server);
+    let m1 = 1 / (1-hackPercent);
+    let gthreads = Math.max(await ns.growthAnalyze(server,m1),1);
+    let hackRam = 0.1;
+    let growRam = 0.15;
+    let weakRam = 0.15;
+    let hackSecs = await ns.getHackTime(server);
+    let growSecs = await ns.getGrowTime(server);
+    let weakSecs = await ns.getWeakenTime(server);
+    let weakThreads = ((0.002) + (gthreads * 0.004))/ 0.005;
+    weakThreads = Math.ceil(Math.max(weakThreads, 1));
+    let score = (hackChance * hackMoney) / (
+        (hackRam * hackSecs) + 
+        (gthreads * (growRam * growSecs))+
+        (weakThreads * (weakRam * weakSecs))
+    );
 }
