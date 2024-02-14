@@ -9,3 +9,7 @@ the run the install script
 ```
 run install.js
 ```
+
+```
+wget https://raw.githubusercontent.com/cdm014/bitburnerFiles/master.
+```

@@ -41,7 +41,7 @@ export async function buildServer(ns, name) {
     server.RequiredPorts =  await ns.getServerNumPortsRequired(server.Name);
     server.RequiredLevel = await ns.getServerRequiredHackingLevel(server.Name);
     server.MinSecurity = await ns.getServerMinSecurityLevel(server.Name);
-    server.MaxMoney = await ns.getServerMaxMoney(target);
+    server.MaxMoney = await ns.getServerMaxMoney(server.Name);
     server.Score = await scoreServerName(ns, name);
     return server;
 
