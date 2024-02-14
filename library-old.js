@@ -63,7 +63,7 @@ export async function getServers(ns) {
 
 /**
  * calls getServers and writes the results to a JSON file
- * @param {netscript} ns 
+ * @param {NS} ns 
  */
 export async function writeServers(ns) {
     let Servers = getServers(ns);
@@ -73,7 +73,7 @@ export async function writeServers(ns) {
 
 /**
  * returns an array of Server objects
- * @param {netscript} ns 
+ * @param {NS} ns 
  */
 async function readServers(ns) {
     let ServerString = await ns.read(serverFile);

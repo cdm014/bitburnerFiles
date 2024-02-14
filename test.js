@@ -1,4 +1,7 @@
-import {getServers} from "library"
+import { writeServers } from "library"
+
+
 export async function main(ns) {
- await getServers(ns);
+  let servers = await writeServers(ns);
+
 }
