@@ -4,8 +4,11 @@ export async function main(ns) {
 	}
 	var files = new Array();
 	files.push("TinyHack.js");
+	files.push("oneHack.js");
 	files.push("TinyGrow.js");
+	files.push("oneGrow.js");
 	files.push("TinyWeaken.js");
+	files.push("oneWeaken.js");
 	files.push("Controller.js");
 	files.push("library.js"); 
 	files.push("test.js");

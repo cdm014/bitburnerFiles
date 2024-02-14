@@ -194,8 +194,9 @@ async function GetRoot(ns, server) {
 
 async function CopyFiles(ns, server) {
   let i = 0;
-  while (i < scripts.length) {
-    let filename = scripts[i];
+  var scripts1 = ["TinyWeaken.js", "TinyGrow.js","TinyHack.js","OneWeaken.js","OneHack.js","OneGrow.js","library.js"];
+  while (i < scripts1.length) {
+    let filename = scripts1[i];
     await ns.scp(filename, server);
     i++;
   }
